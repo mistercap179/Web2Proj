@@ -1,0 +1,29 @@
+.error-message{
+    color: firebrick;
+}
+.form{
+    width: 50%;
+    margin-left :40%
+}
+.file-input{
+    display: none;
+}
+
+.boja { background-color: slategray; }
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    flex-direction: column;
+    height: 100vh;
+}
+#display_image{
+    width: 100px;
+    height: 100px;
+    margin-left: 50px;
+    border: 1px solid black;
+    background-position: center;
+    background-size: cover;
+}

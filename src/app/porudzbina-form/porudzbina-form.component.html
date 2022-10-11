@@ -1,0 +1,27 @@
+<h2 class="form">Product creation</h2>
+<hr>
+<div class="form">
+    <form [formGroup]="porudzbinaForm" (ngSubmit)="submitForm(porudzbinaForm.value)">
+        <mat-form-field  appearance="outline">
+            <mat-label  for="AdresaDostave">Adresa dostave</mat-label >
+            <input matInput placeholder="Adresa Dostave" type="text"  id="AdresaDostave" name="AdresaDostave"  class="form-control" formControlName="AdresaDostave"  [(ngModel)]="potrosac.Adresa" readonly >
+        </mat-form-field>
+        <br>
+
+       <mat-form-field  appearance="outline">
+            <mat-label for="Komentar">Komentar</mat-label>
+            <input matInput placeholder="Komentar" type="text" id="Komentar" class="form-control" formControlName="Komentar">
+        </mat-form-field>
+        <br>
+            <mat-label for="Proizvodi">Proizvodi</mat-label>
+            <mat-list>
+                <mat-list-item *ngFor="let proizvod of proizvodInfo.proizvodi; let i = index">
+                    <p>{{proizvod.ime}} kolicina: {{proizvodInfo.kolicinaProizvoda[proizvod.idProizvod]}}</p>
+                </mat-list-item >
+            </mat-list>
+        <br>
+            <mat-label for="Cijena">Ukupna cijena porudzbine:</mat-label>
+            <p>{{ukupno}}$</p>
+        <button  mat-raised-button color="primary" type="submit" class="btn btn-primary btn-block" [disabled]="!porudzbinaForm.valid">Submit</button>
+    </form>
+</div>

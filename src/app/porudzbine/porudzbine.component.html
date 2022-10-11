@@ -1,0 +1,97 @@
+<div class="grid-containerApp ">
+    <div class="item1App">
+       Porudzbine :
+      <table class="content-table"  #tabela1 id="tabela1">
+        <thead>
+          <tr>
+            <th>Adresa Dostave</th>
+            <th>Komentar</th>
+            <th>Cijena</th>
+            <th>Status porudzbine</th>
+            <th>Dostavljac</th>
+            <th>Proizvodi</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let porudzbina of porudzbine; let i = index">
+            <td>{{porudzbina.adresaDostave}}</td>
+            <td>{{porudzbina.komentar}}</td>
+            <td>{{porudzbina.cijena}}</td>
+            <td *ngIf="porudzbina.statusPorudzbine == 0">Na cekanju</td>
+            <td *ngIf="porudzbina.statusPorudzbine == 1">Zapoceta</td>
+            <td *ngIf="porudzbina.statusPorudzbine == 2">Zavrsena</td>
+            <td>{{porudzbina.dostavljac}}</td>
+            <td>
+              <button (click)="porudzbinaInfo(porudzbina.proizvodi,porudzbina.kolicinaProizvoda)"><a href="navigation#proizvod_info">Proizvodi</a></button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="grid-containerApp " *ngIf="osoba.TipKorisnika == 2" >
+      <div class="item2App">
+          Nove porudzbine:
+        <table class="content-table" #tabela2 id="tabela2" >
+          <thead>
+            <tr>
+              <th>Adresa Dostave</th>
+              <th>Komentar</th>
+              <th>Cijena</th>
+              <th>Status porudzbine</th>
+              <th>Potrosac</th>
+              <th>Proizvodi</th>
+              <td>Dostava</td>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let porudzbina of porudzbineNove; let i = index">
+              <td>{{porudzbina.adresaDostave}}</td>
+              <td>{{porudzbina.komentar}}</td>
+              <td>{{porudzbina.cijena}}</td>
+              <td *ngIf="porudzbina.statusPorudzbine == 0">Na cekanju</td>
+              <td *ngIf="porudzbina.statusPorudzbine == 1">Zapoceta</td>
+              <td *ngIf="porudzbina.statusPorudzbine == 2">Zavrsena</td>
+              <td>{{porudzbina.potrosac}}</td>
+              <td>
+                <button (click)="porudzbinaInfo(porudzbina.proizvodi,porudzbina.kolicinaProizvoda)"><a href="navigation#proizvod_info">Proizvodi</a></button>
+              </td>
+              <td *ngIf="!porudzbinaZavrsena">
+                <button (click)="prihvati(porudzbina.idPorudzbine,osoba)">Prihvati</button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+  
+      <div class="grid-containerApp " *ngIf="osoba.TipKorisnika == 2" >
+        <div class="item2App">
+            Porudzbine u toku:
+          <table class="content-table" #tabela3 id="tabela3" >
+            <thead>
+              <tr>
+                <th>Adresa Dostave</th>
+                <th>Komentar</th>
+                <th>Cijena</th>
+                <th>Status porudzbine</th>
+                <th>Potrosac</th>
+                <th>Proizvodi</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let porudzbina of porudzbineUtoku; let i = index">
+                <td>{{porudzbina.adresaDostave}}</td>
+                <td>{{porudzbina.komentar}}</td>
+                <td>{{porudzbina.cijena}}</td>
+                <td *ngIf="porudzbina.statusPorudzbine == 0">Na cekanju</td>
+                <td *ngIf="porudzbina.statusPorudzbine == 1">Zapoceta</td>
+                <td *ngIf="porudzbina.statusPorudzbine == 2">Zavrsena</td>
+                <td>{{porudzbina.potrosac}}</td>
+                <td>
+                  <button (click)="porudzbinaInfo(porudzbina.proizvodi,porudzbina.kolicinaProizvoda)"><a href="navigation#proizvod_info">Proizvodi</a></button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+    

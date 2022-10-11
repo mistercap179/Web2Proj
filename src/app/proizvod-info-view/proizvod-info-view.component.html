@@ -1,0 +1,21 @@
+<div class="grid-containerApp " *ngIf="proizvodInfo">
+    <div class="item1App">
+      <table class="content-table" >
+        <thead>
+          <tr>
+            <th>Naziv proizvoda</th>
+            <th>Cijena</th>
+            <th>Sastojci</th>
+            <th>Kolicina</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let proizvod of proizvodInfo.proizvodi; let i = index">
+            <td>{{proizvod.ime}}</td>
+            <td>{{proizvod.cijena}}</td>
+            <td>{{proizvod.sastojci}}</td>
+            <td>{{proizvodInfo.kolicinaProizvoda[proizvod.idProizvod]}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>

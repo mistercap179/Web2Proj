@@ -1,0 +1,48 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="(isHandset$ | async) === false">
+    <mat-toolbar>Menu</mat-toolbar>
+    <mat-nav-list>
+      <div *ngIf="user.TipKorisnika == 1">
+        <a mat-list-item href="navigation#dodaj_proizvod">Dodaj proizvod</a>
+        <a mat-list-item href="navigation#dostavljaci">Pregled dostavljaca</a>
+        <a mat-list-item href="navigation#porudzbine">Pregled porudzbina</a>
+      </div>
+      <div *ngIf="user.TipKorisnika == 2">
+        <a mat-list-item href="navigation#tabela1">Zavrsene porudzbine</a>
+        <a mat-list-item href="navigation#tabela2">Nove porudzbine</a>
+        <a mat-list-item href="navigation#tabela3">Porudzbine u toku</a>
+      </div>
+      <div *ngIf="user.TipKorisnika == 3">
+        <a mat-list-item href="navigation#porudzbine">Pregled porudzbina</a>
+        <a mat-list-item href="navigation#kreiraj_porudzbinu">Dodaj proizvode</a>
+        <a mat-list-item href="navigation#porudzbinaform">Poruci</a>
+      </div>
+      <a mat-list-item href="navigation#modifikacija">Modifikacija profila</a>
+      <a mat-list-item (click)="logout()">Logout</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <span>Dostava App</span>
+    </mat-toolbar>
+
+    <div [ngSwitch]="user.TipKorisnika">
+      <app-dashboard-admin *ngSwitchCase="1"></app-dashboard-admin>
+      <app-dashboard-dostavljac *ngSwitchCase="2"></app-dashboard-dostavljac>
+      <app-dashboard-potrosac *ngSwitchCase="3"></app-dashboard-potrosac>
+      <p *ngSwitchDefault></p>
+    </div>
+    <!-- Add Content Here -->
+  </mat-sidenav-content>
+</mat-sidenav-container>

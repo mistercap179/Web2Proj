@@ -1,0 +1,25 @@
+<h2 class="form">Kreiraj proizvod</h2>
+<hr>
+<div class="form">
+    <form [formGroup]="proizvodFrom" (ngSubmit)="submitForm(proizvodFrom.value)">
+        <mat-form-field  appearance="outline">
+            <mat-label for="Ime">Ime</mat-label>
+            <input matInput placeholder="Ime" type="text"  id="Ime" name="Ime"  class="form-control" formControlName="Ime">
+            <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+        </mat-form-field>
+        <br>
+        <mat-form-field  appearance="outline">
+            <mat-label for="Cijena">Cijena</mat-label>
+            <input matInput placeholder="Cijena" type="number" id="Cijena" class="form-control" formControlName="Cijena">
+        </mat-form-field>
+        <br>
+        <mat-form-field  appearance="outline">
+            <mat-label for="Sastojci">Sastojci</mat-label>
+            <input matInput placeholder="Sastojci" type="text" id="Sastojci" class="form-control" formControlName="Sastojci">
+        </mat-form-field>
+        <br>
+        <button mat-raised-button color="primary" type="submit" class="btn btn-primary btn-block" [disabled]="!proizvodFrom.valid">Submit</button>
+    </form>
+</div>
+
+

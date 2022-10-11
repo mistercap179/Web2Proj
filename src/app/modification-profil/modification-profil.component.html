@@ -1,0 +1,69 @@
+<h2 class="form">Modifikacija</h2>
+<hr>
+<form [formGroup]="modifactionForm" (ngSubmit)="submitForm(modifactionForm.value)" class="form">
+    <mat-form-field  appearance="outline">
+        <mat-label for="KorisnickoIme">Korisnicko ime</mat-label>
+        <input matInput placeholder="korisnicko ime" type="text"  id="KorisnickoIme" name="KorisnickoIme" class="form-control" formControlName="KorisnickoIme" [(ngModel)]="user.KorisnickoIme">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field  appearance="outline">
+        <mat-label for="Email">Email</mat-label>
+        <input matInput placeholder="Email" type="email" id="Email" name="Email"  class="form-control" formControlName="Email" [(ngModel)]="user.Email">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+    <br>
+    <mat-form-field appearance="outline">
+        <mat-label for="Lozinka">Lozinka</mat-label>
+        <input matInput placeholder="Password" type="password" id="Lozinka" class="form-control" formControlName="Lozinka" >
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field appearance="outline">
+        <mat-label for="Lozinka2">Potvrdi lozinku</mat-label>
+        <input matInput placeholder="Password" type="password" id="Lozinka2" class="form-control" formControlName="Lozinka2">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field  appearance="outline">
+        <mat-label for="ImePrezime">Ime i prezime</mat-label>
+        <input matInput placeholder="Ime i prezime" type="text" id="ImePrezime" name="ImePrezime"  class="form-control" formControlName="ImePrezime" [(ngModel)]="user.ImePrezime" readonly>
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+    <br>
+
+    <mat-form-field appearance="outline">
+        <mat-label for="Adresa">Adresa</mat-label>
+        <input matInput placeholder="Adresa" type="text" id="Adresa" class="form-control" formControlName="Adresa" [(ngModel)]="user.Adresa">
+        <mat-icon matSuffix>sentiment_very_satisfied</mat-icon>
+    </mat-form-field>
+    <br>
+    <div class="form-group">
+        <label for="Slika">Slika</label> :
+        <input type="file" id="Slika" class="file-upload" accept="image/png,image/jpg" (change)="onFileChanged($event)"   onchange="console.log(event.target.files)" formControlName="Slika" >
+               
+        <div *ngIf="url;else other_content" id="display_image">
+            <img class="my-img" src={{url}} width="100" height="100">
+        </div>
+        
+        <ng-template #other_content id="display_image"><img class="my-img" src={{user.Slika}} width="100" height="100"></ng-template>
+
+
+    </div>
+    <div class="error-message" *ngIf="Slika.errors?.['required']">Slika is required</div>
+    <br>
+
+    <mat-form-field appearance="outline">
+        <mat-label for="TipKorisnika">User Type</mat-label>
+        <mat-select id="TipKorisnika"  name="TipKorisnika" class="form-control" formControlName="TipKorisnika" [(ngModel)]="user.TipKorisnika" readonly >
+            <mat-option value="Admin" disabled>Admin</mat-option>
+            <mat-option value="Dostavljac" disabled>Dostavljac</mat-option>
+            <mat-option value="Potrosac" disabled>Potrosac</mat-option>
+        </mat-select>
+    </mat-form-field>
+    <br>
+  <button mat-raised-button color="primary" type="submit" class="btn btn-primary btn-block" [disabled]="!modifactionForm.valid">Submit</button>
+</form>
